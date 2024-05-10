@@ -14,42 +14,19 @@
   <div id="app">
     <div class="nav-bar"></div>
 
-    <div class="cart">Cart({{ cart }})</div>
-
-    <div class="product-display">
-      <div class="product-container">
-        <div class="product-image">
-          <!-- :src="image" is shorthand syntax for v-bind:src="image" -->
-          <img :src="image" alt="green-sock">
-        </div>
-        <div class="product-info">
-          <h1>{{ product }}</h1>
-          <p v-if="onSale">On Sale</p>
-          <!-- v-show is more performance than v-if because it doesnt need to update the DOM -->
-          <p v-show="inStock">In Stock</p>
-          <p v-if="inventory > 10">In Stock</p>
-          <p v-else-if="inventory > 0 && inventory < 11">Almost sold out!</p>
-          <p v-else>Out of Stock</p>
-          <ul>
-            <li v-for="detail in details">{{ detail }}</li>
-          </ul>
-          <div v-for="variant in variants" :key="variant.id" v-on:mouseover="updateImage(variant.image)">
-            {{ variant.color }}
-          </div>
-          <div v-for="size in sizes">{{ size }}</div>
-          <p>{{ description }}</p>
-          <!-- @click="someMethod" is shorthand syntax for v-on:click="someMethod" -->
-          <button class="button" @click="addToCart">Add to Cart</button>
-          <button class="button" @click="removeItem">Remove Item</button>
-        </div>
-      </div>
-    </div>
+    <div class="cart">Cart({{ cart.length }})</div>
+    
+    <product-display :premium="premium" @add-to-cart="updateCart" @remove-item="removeItem"></product-display>
   </div>
 
   <a :href="url">Made with Vue.js</a>
 
   <!-- Import App -->
   <script src="./main.js"></script>
+
+  <script src="./components/ProductDisplay.js"></script>
+  <script src="./components/ProductDetails.js"></script>
+
 
   <!-- Mount App -->
   <script>
