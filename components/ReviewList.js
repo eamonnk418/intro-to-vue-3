@@ -14,6 +14,7 @@ app.component("review-list", {
                 <p>{{ review.name }}</p>
                 <p>Rating: {{ review.rating }}</p>
                 <p>{{ review.review }}</p>
+                <p>Recommend: {{ review.recommend }}</p>
             </li>
         </ul>
     </div>`
