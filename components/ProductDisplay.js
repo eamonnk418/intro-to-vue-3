@@ -43,6 +43,8 @@ app.component("product-display", {
                 <button class="button" @click="removeItem">Remove Item</button>
             </div>
         </div>
+        <review-list v-if="reviews.length" :reviews="reviews"></review-list>
+        <review-form @review-submitted="addReview"></review-form>
     </div>`,
     data() {
         return {
@@ -59,6 +61,7 @@ app.component("product-display", {
             ],
             sizes: ["S", "M", "L"],
             brand: "Vue Mastery",
+            reviews: []
         }
     },
     methods: {
@@ -71,6 +74,9 @@ app.component("product-display", {
         updateVariant(index) {
             this.selectedVariant = index
         },
+        addReview(review) {
+            this.reviews.push(review)
+        }
     },
     // this gets cached and only recalculated when the dependencies change
     computed: {
